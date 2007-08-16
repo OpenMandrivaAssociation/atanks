@@ -1,7 +1,7 @@
 %bcond_with     allegro_unstable
 
 Name:           atanks
-Version:        2.2
+Version:        2.5
 Release:        %mkrel 1
 Summary:        Scorched Earth game clone
 License:        GPL
@@ -11,7 +11,7 @@ Source0:        http://internap.dl.sourceforge.net/sourceforge/atanks/atanks-%{v
 Source3:        %{name}-16.png
 Source4:        %{name}-32.png
 Source5:        %{name}-48.png
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 %if %with allegro_unstable
 BuildRequires:  allegro-testing-devel
 %else
@@ -37,7 +37,6 @@ tanks.
 %{__cp} -a *.dat %{buildroot}%{_gamesdatadir}/%{name}
 %{__cp} -a *.txt %{buildroot}%{_gamesdatadir}/%{name}
 
-#to make rpmlint happy
 %{__perl} -pi -e "s/\r$//g" %{buildroot}%{_gamesdatadir}/%{name}/tanks.txt
 
 %{__chmod} 644 %{buildroot}%{_gamesdatadir}/%{name}/*
@@ -92,5 +91,3 @@ EOF
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
 %{_datadir}/applications/*
-
-
