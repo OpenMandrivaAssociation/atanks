@@ -2,7 +2,7 @@
 
 Name:           atanks
 Version:        2.5
-Release:        %mkrel 1
+Release:        %mkrel 2
 Summary:        Scorched Earth game clone
 License:        GPL
 Group:          Games/Arcade
@@ -48,28 +48,16 @@ tanks.
 %{__install} -D -m 644 %{SOURCE4} %{buildroot}%{_iconsdir}/%{name}.png
 %{__install} -D -m 644 %{SOURCE5} %{buildroot}%{_liconsdir}/%{name}.png
 
-%{__install} -d -m 755 %{buildroot}%{_menudir}
-%{__cat} >%{buildroot}%{_menudir}/%{name} <<EOF
-?package(%{name}):\
-    command="%{_gamesbindir}/%{name}"\
-    title="Atanks"\
-    longtitle="A worms clone"\
-    needs="x11"\
-    section="More Applications/Games/Arcade"\
-    icon="%{name}.png"\
-    xdg="true"
-EOF
-
 %{__mkdir_p} %{buildroot}%{_datadir}/applications
 %{__cat} > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
 Name=%{name}
-Comment=%{Summary}
+Comment=Scorched Earth game clone
 Exec=%{name} -c
 Icon=%{name}
 Terminal=false
 Type=Application
-Categories=X-MandrivaLinux-MoreApplications-Games-Arcade;Game;ArcadeGame;
+Categories=Game;ArcadeGame;
 EOF
 
 %post
@@ -86,7 +74,6 @@ EOF
 %doc README TODO BUGS Changelog
 %{_gamesbindir}/%{name}
 %{_gamesdatadir}/%{name}
-%{_menudir}/%{name}
 %{_miconsdir}/%{name}.png
 %{_iconsdir}/%{name}.png
 %{_liconsdir}/%{name}.png
