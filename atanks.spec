@@ -11,7 +11,6 @@ Source0:        http://internap.dl.sourceforge.net/sourceforge/atanks/atanks-%{v
 Source3:        %{name}-16.png
 Source4:        %{name}-32.png
 Source5:        %{name}-48.png
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 %if %with allegro_unstable
 BuildRequires:  allegro-testing-devel
 %else
