@@ -1,13 +1,13 @@
 %bcond_with     allegro_unstable
 
 Name:           atanks
-Version:        2.5
-Release:        %mkrel 2
+Version:        2.7
+Release:        %mkrel 1
 Summary:        Scorched Earth game clone
 License:        GPL
 Group:          Games/Arcade
 Url:            http://atanks.sourceforge.net/
-Source0:        http://internap.dl.sourceforge.net/sourceforge/atanks/atanks-%{version}.tar.gz
+Source0:        http://downloads.sourceforge.net/sourceforge/atanks/atanks-%{version}.tar.gz
 Source3:        %{name}-16.png
 Source4:        %{name}-32.png
 Source5:        %{name}-48.png
@@ -26,7 +26,7 @@ tanks.
 %setup -q -n %{name}
 
 %build
-%{make} CC="%{__cxx}" OFLAGS="%{optflags}" FLAGS="-DLINUX -DVERSION=\\\"\${VERSION}\\\" -DDATA_DIR=\\\"%{_gamesdatadir}/%{name}\\\""
+%{make} CC="%{__cxx}" OFLAGS="%{optflags}" FLAGS="-DLINUX -DVERSION=\\\"%{version}\\\" -DDATA_DIR=\\\"%{_gamesdatadir}/%{name}\\\""
 
 %install
 %{__rm} -rf %{buildroot}
@@ -69,8 +69,8 @@ EOF
 %{__rm} -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
-%doc README TODO BUGS Changelog
+%defattr(-,root,root,0755)
+%doc Changelog COPYING README TODO atanks-%{version}.spec
 %{_gamesbindir}/%{name}
 %{_gamesdatadir}/%{name}
 %{_miconsdir}/%{name}.png
