@@ -2,7 +2,7 @@
 
 Name:           atanks
 Version:        2.9
-Release:        %mkrel 1
+Release:        %mkrel 2
 Summary:        Scorched Earth game clone
 License:        GPLv2+
 Group:          Games/Arcade
