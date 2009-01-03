@@ -1,7 +1,9 @@
 %bcond_with     allegro_unstable
 
+%define Werror_cflags %nil
+
 Name:           atanks
-Version:        3.1
+Version:        3.2
 Release:        %mkrel 1
 Summary:        Scorched Earth game clone
 License:        GPLv2+
@@ -27,7 +29,9 @@ tanks.
 %setup -q -n %{name}
 
 %build
-%{make} CC="%{__cxx}" OFLAGS="%{optflags}" FLAGS="-DLINUX -DVERSION=\\\"%{version}\\\" -DDATA_DIR=\\\"%{_gamesdatadir}/%{name}\\\""
+%{make} \
+    CC="%{__cxx}" OFLAGS="%{optflags}" \
+    FLAGS="-DLINUX -DVERSION=\\\"%{version}\\\" -DDATA_DIR=\\\"%{_gamesdatadir}/%{name}\\\""
 
 %install
 %{__rm} -rf %{buildroot}
