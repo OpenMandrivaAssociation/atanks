@@ -1,10 +1,8 @@
 %bcond_with     allegro_unstable
 
-%define Werror_cflags %nil
-
 Name:           atanks
 Version:        3.2
-Release:        %mkrel 1
+Release:        %mkrel 2
 Summary:        Scorched Earth game clone
 License:        GPLv2+
 Group:          Games/Arcade
@@ -57,7 +55,7 @@ tanks.
 [Desktop Entry]
 Name=%{name}
 Comment=Scorched Earth game clone
-Exec=%{name} -c
+Exec=%{name}
 Icon=%{name}
 Terminal=false
 Type=Application
