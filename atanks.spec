@@ -1,17 +1,18 @@
 %bcond_with     allegro_unstable
 
 Name:           atanks
-Version:        3.8
+Version:        3.9
 Release:        %mkrel 1
 Summary:        Scorched Earth game clone
 License:        GPLv2+
 Group:          Games/Arcade
 Url:            http://atanks.sourceforge.net/
-Source0:        http://downloads.sourceforge.net/sourceforge/atanks/atanks-%{version}-stable.tar.gz
+Source0:        http://downloads.sourceforge.net/sourceforge/atanks/atanks-%{version}.tar.gz
 Source3:        %{name}-16.png
 Source4:        %{name}-32.png
 Source5:        %{name}-48.png
 Patch:		atanks-3.8-format-string.patch
+Patch1:		atanks-3.9-install.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 %if %with allegro_unstable
 BuildRequires:  allegro-testing-devel
@@ -27,6 +28,7 @@ tanks.
 %prep
 %setup -q
 %patch -p1
+%patch1 -p1
 
 %build
 %{make} \
@@ -36,14 +38,12 @@ tanks.
 %install
 %{__rm} -rf %{buildroot}
 
-%{__mkdir_p} %{buildroot}{%{_gamesbindir},%{_gamesdatadir}/%{name}}
-%{__cp} -a %{name} %{buildroot}%{_gamesbindir}
-%{__cp} -a *.dat %{buildroot}%{_gamesdatadir}/%{name}
-%{__cp} -a *.txt %{buildroot}%{_gamesdatadir}/%{name}
+make install BINDIR=%buildroot%_gamesbindir INSTALLDIR=%buildroot%_gamesdatadir/%name
 
 %{__perl} -pi -e "s/\r$//g" %{buildroot}%{_gamesdatadir}/%{name}/tanks.txt
 
 %{__chmod} 644 %{buildroot}%{_gamesdatadir}/%{name}/*
+%{__chmod} 755 %{buildroot}%{_gamesdatadir}/%{name}/*/
 
 # Menu
 %{__mkdir_p} %{buildroot}{%{_menudir},%{_liconsdir},%{_iconsdir},%{_miconsdir}}
