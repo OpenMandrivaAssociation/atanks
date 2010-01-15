@@ -27,7 +27,7 @@ tanks.
 
 %prep
 %setup -q
-%patch0 -p1 -b .format-strings
+%patch -p1 -b .format-strings
 %patch1 -p1 -b .install
 
 %build
