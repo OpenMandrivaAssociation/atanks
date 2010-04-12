@@ -1,7 +1,7 @@
 %bcond_with     allegro_unstable
 
 Name:           atanks
-Version:        4.3
+Version:        4.5
 Release:        %mkrel 1
 Summary:        Scorched Earth game clone
 License:        GPLv2+
@@ -11,8 +11,7 @@ Source0:        http://downloads.sourceforge.net/sourceforge/atanks/atanks-%{ver
 Source3:        %{name}-16.png
 Source4:        %{name}-32.png
 Source5:        %{name}-48.png
-Patch:		atanks-4.3-format-strings.patch
-Patch1:		atanks-4.3-install.patch
+Patch1:		atanks-4.5-install.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 %if %with allegro_unstable
 BuildRequires:  allegro-testing-devel
@@ -27,7 +26,6 @@ tanks.
 
 %prep
 %setup -q
-%patch -p1 -b .format-strings
 %patch1 -p1 -b .install
 
 %build
@@ -80,7 +78,7 @@ EOF
 
 %files
 %defattr(-,root,root,0755)
-%doc Changelog COPYING README TODO atanks-%{version}.spec
+%doc Changelog COPYING README TODO
 %{_gamesbindir}/%{name}
 %{_gamesdatadir}/%{name}
 %{_miconsdir}/%{name}.png
