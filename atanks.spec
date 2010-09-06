@@ -1,7 +1,7 @@
 %bcond_with     allegro_unstable
 
 Name:           atanks
-Version:        4.6
+Version:        4.7
 Release:        %mkrel 1
 Summary:        Scorched Earth game clone
 License:        GPLv2+
