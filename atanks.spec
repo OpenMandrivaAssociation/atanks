@@ -11,6 +11,7 @@ Source0:        http://downloads.sourceforge.net/sourceforge/atanks/atanks-%{ver
 Source3:        %{name}-16.png
 Source4:        %{name}-32.png
 Source5:        %{name}-48.png
+Patch0:		atanks-4.8-link.patch
 Patch1:		atanks-4.5-install.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 %if %with allegro_unstable
@@ -26,11 +27,12 @@ tanks.
 
 %prep
 %setup -q
+%patch0 -p0 -b .link
 %patch1 -p1 -b .install
 
 %build
 %{make} \
-    CC="%{__cxx}" OFLAGS="%{optflags} -lpthread" INSTALLDIR=%_gamesdatadir/%name
+    CC="%{__cxx}" OFLAGS="%{optflags}" INSTALLDIR=%_gamesdatadir/%name
 
 %install
 %{__rm} -rf %{buildroot}
