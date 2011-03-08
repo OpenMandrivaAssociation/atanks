@@ -30,7 +30,7 @@ tanks.
 
 %build
 %{make} \
-    CC="%{__cxx}" OFLAGS="%{optflags}" INSTALLDIR=%_gamesdatadir/%name
+    CC="%{__cxx}" OFLAGS="%{optflags} -lpthread" INSTALLDIR=%_gamesdatadir/%name
 
 %install
 %{__rm} -rf %{buildroot}
