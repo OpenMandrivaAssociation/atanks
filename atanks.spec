@@ -1,13 +1,13 @@
 %bcond_with     allegro_unstable
 
 Name:           atanks
-Version:        4.7
+Version:        4.8
 Release:        %mkrel 1
 Summary:        Scorched Earth game clone
 License:        GPLv2+
 Group:          Games/Arcade
 Url:            http://atanks.sourceforge.net/
-Source0:        http://downloads.sourceforge.net/sourceforge/atanks/atanks-%{version}.tar.gz
+Source0:        http://downloads.sourceforge.net/sourceforge/atanks/atanks-%{version}.tar.xz
 Source3:        %{name}-16.png
 Source4:        %{name}-32.png
 Source5:        %{name}-48.png
