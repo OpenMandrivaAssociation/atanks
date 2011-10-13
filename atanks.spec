@@ -1,7 +1,7 @@
 %bcond_with     allegro_unstable
 
 Name:           atanks
-Version:        5.1
+Version:        5.2
 Release:        %mkrel 1
 Summary:        Scorched Earth game clone
 License:        GPLv2+
@@ -12,7 +12,6 @@ Source3:        %{name}-16.png
 Source4:        %{name}-32.png
 Source5:        %{name}-48.png
 Patch0:		atanks-5.1-link.patch
-Patch1:		atanks-5.1-install.patch
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
 %if %with allegro_unstable
 BuildRequires:  allegro-testing-devel
@@ -28,7 +27,6 @@ tanks.
 %prep
 %setup -q
 %patch0 -p0 -b .link
-%patch1 -p1 -b .install
 
 %build
 %make \
@@ -46,24 +44,17 @@ tanks.
 
 %{__perl} -pi -e "s/\r$//g" %{buildroot}%{_gamesdatadir}/%{name}/tanks.txt
 
-# Menu
-%{__mkdir_p} %{buildroot}{%{_menudir},%{_liconsdir},%{_iconsdir},%{_miconsdir}}
+# Fix icon in .desktop file
+%{__perl} -pi -e "s/%{name}.png/%{name}/g" %{buildroot}%{_datadir}/applications/%{name}.desktop
 
-%{__install} -D -m 644 %{SOURCE3} %{buildroot}%{_miconsdir}/%{name}.png
-%{__install} -D -m 644 %{SOURCE4} %{buildroot}%{_iconsdir}/%{name}.png
-%{__install} -D -m 644 %{SOURCE5} %{buildroot}%{_liconsdir}/%{name}.png
+# Icons
+%{__mkdir_p} %{buildroot}%{_iconsdir}/hicolor/16x16/apps
+%{__mkdir_p} %{buildroot}%{_iconsdir}/hicolor/32x32/apps
 
-%{__mkdir_p} %{buildroot}%{_datadir}/applications
-%{__cat} > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
-[Desktop Entry]
-Name=%{name}
-Comment=Scorched Earth game clone
-Exec=%{name}
-Icon=%{name}
-Terminal=false
-Type=Application
-Categories=Game;ArcadeGame;
-EOF
+%{__install} -D -m 644 %{SOURCE3} %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
+%{__install} -D -m 644 %{SOURCE4} %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+
+
 
 %clean
 %{__rm} -rf %{buildroot}
@@ -73,8 +64,6 @@ EOF
 %doc Changelog README TODO
 %{_gamesbindir}/%{name}
 %{_gamesdatadir}/%{name}
-%{_miconsdir}/%{name}.png
-%{_iconsdir}/%{name}.png
-%{_liconsdir}/%{name}.png
-%{_datadir}/applications/mandriva-%{name}.desktop
+%{_iconsdir}/hicolor/*/apps/%{name}.png
+%{_datadir}/applications/%{name}.desktop
 
