@@ -1,22 +1,21 @@
-%bcond_with     allegro_unstable
+%bcond_with	allegro_unstable
 
-Name:           atanks
-Version:        5.3
-Release:        %mkrel 1
-Summary:        Scorched Earth game clone
-License:        GPLv2+
-Group:          Games/Arcade
-Url:            http://atanks.sourceforge.net/
-Source0:        http://downloads.sourceforge.net/sourceforge/atanks/atanks-%{version}.tar.gz
-Source3:        %{name}-16.png
-Source4:        %{name}-32.png
-Source5:        %{name}-48.png
-Patch0:		atanks-5.3-link.patch
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-root
+Name:		atanks
+Version:	5.4
+Release:	%mkrel 1
+Summary:	Scorched Earth game clone
+License:	GPLv2+
+Group:		Games/Arcade
+Url:		http://atanks.sourceforge.net/
+Source0:	http://downloads.sourceforge.net/sourceforge/atanks/atanks-%{version}.tar.gz
+Source3:	%{name}-16.png
+Source4:	%{name}-32.png
+Source5:	%{name}-48.png
+Patch0:		atanks-5.4-link.patch
 %if %with allegro_unstable
-BuildRequires:  allegro-testing-devel
+BuildRequires:	allegro-testing-devel
 %else
-BuildRequires:  allegro-devel
+BuildRequires:	allegro-devel
 %endif
 
 %description
@@ -32,35 +31,34 @@ tanks.
 %make \
 	CC="%{__cxx}" \
 	OFLAGS="%{optflags}" \
-	LDFLAGS="%{ldflags}" \
+	LFLAGS="%{ldflags} -L%{_libdir} -lX11 -lXext -lXcursor -lXpm -lxcb -lXrender -lXfixes -lXau -lXdmcp" \
 	INSTALLDIR=%{_gamesdatadir}/%{name}
 
 %install
-%{__rm} -rf %{buildroot}
+%__rm -rf %{buildroot}
 
 %makeinstall_std \
 	BINDIR=%{_gamesbindir} \
 	INSTALLDIR=%{_gamesdatadir}/%{name}
 
-%{__perl} -pi -e "s/\r$//g" %{buildroot}%{_gamesdatadir}/%{name}/tanks.txt
+%__perl -pi -e "s/\r$//g" %{buildroot}%{_gamesdatadir}/%{name}/tanks.txt
 
 # Fix icon in .desktop file
-%{__perl} -pi -e "s/%{name}.png/%{name}/g" %{buildroot}%{_datadir}/applications/%{name}.desktop
+%__perl -pi -e "s/%{name}.png/%{name}/g" %{buildroot}%{_datadir}/applications/%{name}.desktop
 
 # Icons
-%{__mkdir_p} %{buildroot}%{_iconsdir}/hicolor/16x16/apps
-%{__mkdir_p} %{buildroot}%{_iconsdir}/hicolor/32x32/apps
+%__mkdir_p %{buildroot}%{_iconsdir}/hicolor/16x16/apps
+%__mkdir_p %{buildroot}%{_iconsdir}/hicolor/32x32/apps
 
-%{__install} -D -m 644 %{SOURCE3} %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
-%{__install} -D -m 644 %{SOURCE4} %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+%__install -D -m 644 %{SOURCE3} %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
+%__install -D -m 644 %{SOURCE4} %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
 
 
 
 %clean
-%{__rm} -rf %{buildroot}
+%__rm -rf %{buildroot}
 
 %files
-%defattr(-,root,root)
 %doc Changelog README TODO
 %{_gamesbindir}/%{name}
 %{_gamesdatadir}/%{name}
