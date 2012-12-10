@@ -1,5 +1,3 @@
 sources:
-  "atanks-16.png:"	fc1e55b9e8f889890c3a4eb83aa7597d843a2365
-  "atanks-32.png:"	4cdc39f2abcd9bbf943216fc8fb4dbf307c54d16
-  "atanks-48.png:"	b55527d2dabc2929c11bd57f316763d4228ed64a
-  "atanks-5.4.tar.gz:"	586947035476551a29d6f28521831c4471aaa97a
+  "atanks-5.4.tar.gz": 586947035476551a29d6f28521831c4471aaa97a
+  atanks-5.7.tar.gz: 438bab18f629dca18db4d5cb887ff8bd19a42db0

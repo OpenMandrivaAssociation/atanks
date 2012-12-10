@@ -1,7 +1,7 @@
 %bcond_with	allegro_unstable
 
 Name:		atanks
-Version:	5.4
+Version:	5.7
 Release:	%mkrel 1
 Summary:	Scorched Earth game clone
 License:	GPLv2+
@@ -35,8 +35,6 @@ tanks.
 	INSTALLDIR=%{_gamesdatadir}/%{name}
 
 %install
-%__rm -rf %{buildroot}
-
 %makeinstall_std \
 	BINDIR=%{_gamesbindir} \
 	INSTALLDIR=%{_gamesdatadir}/%{name}
@@ -53,15 +51,9 @@ tanks.
 %__install -D -m 644 %{SOURCE3} %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
 %__install -D -m 644 %{SOURCE4} %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
 
-
-
-%clean
-%__rm -rf %{buildroot}
-
 %files
 %doc Changelog README TODO
 %{_gamesbindir}/%{name}
 %{_gamesdatadir}/%{name}
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 %{_datadir}/applications/%{name}.desktop
-
