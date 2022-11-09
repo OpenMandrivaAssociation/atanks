@@ -1,8 +1,9 @@
+%undefine _debugsource_packages
 %bcond_with	allegro_unstable
 
 Name:		atanks
-Version:	5.7
-Release:	2
+Version:	6.6
+Release:	1
 Summary:	Scorched Earth game clone
 License:	GPLv2+
 Group:		Games/Arcade
@@ -11,7 +12,7 @@ Source0:	http://downloads.sourceforge.net/sourceforge/atanks/atanks-%{version}.t
 Source3:	%{name}-16.png
 Source4:	%{name}-32.png
 Source5:	%{name}-48.png
-Patch0:		atanks-5.4-link.patch
+#Patch0:		atanks-5.4-link.patch
 %if %with allegro_unstable
 BuildRequires:	allegro-testing-devel
 %else
@@ -24,8 +25,7 @@ which involves firing enormous weapons to try and destroy the other
 tanks.
 
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 
 %build
 %make \
@@ -57,3 +57,4 @@ tanks.
 %{_gamesdatadir}/%{name}
 %{_iconsdir}/hicolor/*/apps/%{name}.png
 %{_datadir}/applications/%{name}.desktop
+%{_datadir}/metainfo/io.sourceforge.atanks.metainfo.xml
