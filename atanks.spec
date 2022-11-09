@@ -28,28 +28,23 @@ tanks.
 %autosetup -p1
 
 %build
-%make \
+%make_build \
 	CC="%{__cxx}" \
 	OFLAGS="%{optflags}" \
 	LFLAGS="%{ldflags} -L%{_libdir} -lX11 -lXext -lXcursor -lXpm -lxcb -lXrender -lXfixes -lXau -lXdmcp" \
 	INSTALLDIR=%{_gamesdatadir}/%{name}
 
 %install
-%makeinstall_std \
+%make_install \
 	BINDIR=%{_gamesbindir} \
 	INSTALLDIR=%{_gamesdatadir}/%{name}
 
-%__perl -pi -e "s/\r$//g" %{buildroot}%{_gamesdatadir}/%{name}/tanks.txt
-
-# Fix icon in .desktop file
-%__perl -pi -e "s/%{name}.png/%{name}/g" %{buildroot}%{_datadir}/applications/%{name}.desktop
-
 # Icons
-%__mkdir_p %{buildroot}%{_iconsdir}/hicolor/16x16/apps
-%__mkdir_p %{buildroot}%{_iconsdir}/hicolor/32x32/apps
+mkdir -p %{buildroot}%{_iconsdir}/hicolor/16x16/apps
+mkdir -p %{buildroot}%{_iconsdir}/hicolor/32x32/apps
 
-%__install -D -m 644 %{SOURCE3} %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
-%__install -D -m 644 %{SOURCE4} %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
+install -D -m 644 %{SOURCE3} %{buildroot}%{_iconsdir}/hicolor/16x16/apps/%{name}.png
+install -D -m 644 %{SOURCE4} %{buildroot}%{_iconsdir}/hicolor/32x32/apps/%{name}.png
 
 %files
 %doc Changelog README TODO
