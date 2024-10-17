@@ -7,7 +7,7 @@ Release:	1
 Summary:	Scorched Earth game clone
 License:	GPLv2+
 Group:		Games/Arcade
-Url:		http://atanks.sourceforge.net/
+Url:		https://atanks.sourceforge.net/
 Source0:	http://downloads.sourceforge.net/sourceforge/atanks/atanks-%{version}.tar.gz
 Source3:	%{name}-16.png
 Source4:	%{name}-32.png
